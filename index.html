@@ -17,6 +17,7 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
+            overflow: hidden; /* Убираем прокрутку */
         }
         header {
             background-color: rgba(0, 0, 0, 0.7);
@@ -31,12 +32,15 @@
         .container {
             width: 90%;
             max-width: 600px;
-            margin-top: 100px;
+            margin-top: 80px;
             padding: 20px;
             background: white;
             border-radius: 15px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            text-align: center; /* Выравнивание текста по центру */
+            text-align: center; /* Центрируем текст */
+            opacity: 0; /* Начальное состояние для анимации */
+            transform: translateY(30px); /* Начальная позиция для анимации */
+            animation: fadeInUp 1s forwards; /* Анимация появления */
         }
         h1 {
             font-size: 2.5em;
@@ -46,34 +50,17 @@
             font-size: 1.8em;
             margin-top: 30px;
             margin-bottom: 20px;
+            color: #ff66cc; /* Цвет заголовков */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Тень для заголовков */
         }
         p {
             font-size: 1.2em;
             line-height: 1.6;
             margin: 10px 0; /* Отступы между параграфами */
         }
-        .btn {
-            display: inline-block;
-            padding: 12px 25px;
-            background-color: #ff66cc;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 30px;
-            font-size: 1.1em;
-            margin-top: 15px;
-            box-shadow: 0 4px 10px rgba(255, 102, 204, 0.4);
-            cursor: pointer;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .btn:hover {
-            background-color: #ff3385;
-            box-shadow: 0 6px 12px rgba(255, 102, 204, 0.6);
-        }
         form {
             display: flex;
             flex-direction: column;
-            animation: slideIn 1s ease forwards;
             margin-top: 20px; /* Отступ сверху для формы */
         }
         form input {
@@ -102,30 +89,63 @@
         .submit-btn:hover {
             background-color: #218838;
         }
+
+        /* Анимация появления */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Стиль для фона */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: url('https://images.unsplash.com/photo-1542781496-78c3e85c9a86?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-4.0.3&q=80&w=1080');
+            background-size: cover;
+            filter: blur(8px);
+        }
+
+        /* Логотип (можно добавить позже) */
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+
     </style>
 </head>
 <body>
 
+    <div class="background"></div> <!-- Фоновое изображение -->
     <header>
         <h1>Чужие маски</h1>
-        <p>Уникальный семинар в Алмаю</p>
     </header>
 
     <div class="container">
-        <!-- Приветствие -->
         <h2>Приветствуем вас!</h2>
         <p>Здравствуйте, дорогие студенты! Команда "OSU" рада приветствовать вас на нашем семинаре, где мы будем примерять маски актеров и играть их роли, а также участвовать в интересных играх.</p>
 
-        <!-- Дата и время -->
         <h2>Дата и Время</h2>
         <p><strong>Когда:</strong> 9 октября, 13:00</p>
         <p><strong>Где:</strong> Алмаю (А600)</p>
 
-        <!-- Описание семинара -->
         <h2>Описание семинара</h2>
         <p>Этот мастер-класс объединяет актерское мастерство, психологический спектакль, создание персональных масок и обсуждение гармонии с социальными ролями.</p>
 
-        <!-- Регистрация -->
         <h2>Регистрация на семинар</h2>
         <form action="/submit" method="POST">
             <input type="text" name="name" placeholder="Имя" required>
