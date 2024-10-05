@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чужие маски - Семинар</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .hidden {
+            display: none;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        form input {
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .submit-btn {
+            background-color: #28a745;
+        }
+        .submit-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Чужие маски</h1>
+        <p>Семинар в Алмаю</p>
+    </header>
+
+    <div class="container">
+
+        <!-- Приветствие -->
+        <div class="section">
+            <p>Приветствуем вас на уникальном семинаре "Чужие маски".</p>
+            <a class="btn" onclick="showMore('about')">Узнать больше</a>
+        </div>
+
+        <!-- О семинаре -->
+        <div id="about" class="section hidden">
+            <p>Здравствуйте, дорогие студенты! Команда "OSU" рада приветствовать вас. Скоро пройдет увлекательный семинар "Чужие маски", где мы будем примерять маски актеров и играть их роли, а также участвовать в интересных играх.</p>
+            <a class="btn" onclick="showMore('details')">Подробнее</a>
+        </div>
+
+        <!-- Дата и время -->
+        <div id="details" class="section hidden">
+            <p><strong>Дата:</strong> 9 октября, 13:00</p>
+            <p><strong>Место:</strong> Алмаю (А600)</p>
+            <a class="btn" onclick="showMore('description')">Описание семинара</a>
+        </div>
+
+        <!-- Описание семинара -->
+        <div id="description" class="section hidden">
+            <p>Уникальный мастер-класс, включающий психологический спектакль, создание персональной маски и обсуждение гармонии с социальными ролями.</p>
+            <a class="btn" onclick="showMore('registration')">Регистрация</a>
+        </div>
+
+        <!-- Регистрация -->
+        <div id="registration" class="section hidden">
+            <h2>Регистрация на семинар</h2>
+            <form action="/submit" method="POST">
+                <input type="text" name="name" placeholder="Имя" required>
+                <input type="email" name="email" placeholder="Электронная почта" required>
+                <input type="tel" name="phone" placeholder="Телефон" required>
+                <button type="submit" class="btn submit-btn">Зарегистрироваться</button>
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+        function showMore(sectionId) {
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+    </script>
+
+</body>
+</html>
