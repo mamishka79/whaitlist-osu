@@ -17,6 +17,7 @@
         body {
             background-color: #f0f0f0;
             color: #333;
+            scroll-behavior: smooth;
         }
 
         h1, p {
@@ -25,13 +26,13 @@
         }
 
         .container {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: all 0.5s ease;
             opacity: 0;
             transform: translateY(50px);
+            transition: all 1s ease;
         }
 
         /* Анимация появления */
