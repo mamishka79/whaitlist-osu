@@ -5,186 +5,170 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Чужие маски - Семинар</title>
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial', sans-serif;
-            height: 100%;
-            overflow-x: hidden;
-        }
-
-        /* Красивое сочетание цветов и фонов */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
         body {
-            background-color: #f0f0f0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #ffcc33, #ff66cc);
             color: #333;
-            scroll-behavior: smooth;
-        }
-
-        h1, p {
             margin: 0;
             padding: 0;
-        }
-
-        .container {
-            min-height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin-top: 100px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        .section {
+            margin-bottom: 40px;
             opacity: 0;
-            transform: translateY(50px);
-            transition: all 1s ease;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #ff66cc;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(255, 102, 204, 0.4);
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #ff3385;
+            box-shadow: 0 6px 12px rgba(255, 102, 204, 0.6);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            animation: slideIn 1s ease forwards;
+        }
+        form input {
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 2px solid #ff66cc;
+            border-radius: 30px;
+            font-size: 16px;
+            box-shadow: 0 2px 5px rgba(255, 102, 204, 0.2);
+            transition: border 0.3s ease;
+        }
+        form input:focus {
+            border: 2px solid #ff3385;
+            outline: none;
+        }
+        .submit-btn {
+            background-color: #28a745;
+            color: white;
+            font-size: 1.2em;
+            padding: 12px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .submit-btn:hover {
+            background-color: #218838;
         }
 
         /* Анимация появления */
-        .container.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Центрируем блоки и добавляем минимализм */
-        .block {
-            text-align: center;
-            width: 80%;
-            max-width: 600px;
-            padding: 40px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .block h1 {
-            font-size: 3em;
-            font-weight: bold;
-            font-family: 'Helvetica Neue', sans-serif;
-        }
-
-        .block p {
-            font-size: 1.2em;
-            margin-top: 20px;
-            font-family: 'Georgia', serif;
-        }
-
-        /* Эффект прокрутки */
-        .block:first-child {
-            background-color: rgba(0, 123, 255, 0.7);
-            color: white;
-        }
-
-        /* Стили для разных блоков */
-        .block:nth-child(2) {
-            background-color: rgba(40, 167, 69, 0.7);
-            color: white;
-        }
-
-        .block:nth-child(3) {
-            background-color: rgba(255, 193, 7, 0.7);
-        }
-
-        .block:nth-child(4) {
-            background-color: rgba(220, 53, 69, 0.7);
-            color: white;
-        }
-
-        .block:nth-child(5) {
-            background-color: rgba(23, 162, 184, 0.7);
-        }
-
-        /* Анимация для плавного перехода наверх */
-        .fixed {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background-color: rgba(255, 255, 255, 0.9);
-            z-index: 10;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transform: translateY(-100px);
-            transition: all 0.5s ease;
-        }
-
-        .fixed.visible {
-            opacity: 1;
-            transform: translateY(0);
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="container" id="block1">
-        <div class="block">
-            <h1>Чужие маски</h1>
-            <p>Добро пожаловать на наш семинар!</p>
-        </div>
-    </div>
+    <header>
+        <h1>Чужие маски</h1>
+        <p>Уникальный семинар в Алмаю</p>
+    </header>
 
-    <div class="container" id="block2">
-        <div class="block">
-            <h1>О семинаре</h1>
-            <p>Мы будем примерять маски актеров и участвовать в интересных играх.</p>
-        </div>
-    </div>
+    <div class="container">
 
-    <div class="container" id="block3">
-        <div class="block">
-            <h1>Дата и время</h1>
-            <p>9 октября, 13:00, Алмаю (А600).</p>
+        <!-- Приветствие -->
+        <div class="section visible">
+            <p>Приветствуем вас на захватывающем семинаре "Чужие маски"!</p>
+            <a class="btn" onclick="showMore('about')">Узнать больше</a>
         </div>
-    </div>
 
-    <div class="container" id="block4">
-        <div class="block">
-            <h1>Описание</h1>
-            <p>Уникальный мастер-класс с психологическим спектаклем и созданием масок.</p>
+        <!-- О семинаре -->
+        <div id="about" class="section">
+            <p>Здравствуйте, дорогие студенты! Команда "OSU" рада приветствовать вас на нашем семинаре, где мы будем примерять маски актеров и играть их роли, а также участвовать в интересных играх.</p>
+            <a class="btn" onclick="showMore('details')">Подробнее</a>
         </div>
-    </div>
 
-    <div class="container" id="block5">
-        <div class="block">
-            <h1>Регистрация</h1>
+        <!-- Дата и время -->
+        <div id="details" class="section">
+            <p><strong>Дата:</strong> 9 октября, 13:00</p>
+            <p><strong>Место:</strong> Алмаю (А600)</p>
+            <a class="btn" onclick="showMore('description')">Описание семинара</a>
+        </div>
+
+        <!-- Описание семинара -->
+        <div id="description" class="section">
+            <p>Этот мастер-класс объединяет актерское мастерство, психологический спектакль, создание персональных масок и обсуждение гармонии с социальными ролями.</p>
+            <a class="btn" onclick="showMore('registration')">Регистрация</a>
+        </div>
+
+        <!-- Регистрация -->
+        <div id="registration" class="section">
+            <h2>Регистрация на семинар</h2>
             <form action="/submit" method="POST">
                 <input type="text" name="name" placeholder="Имя" required>
                 <input type="email" name="email" placeholder="Электронная почта" required>
                 <input type="tel" name="phone" placeholder="Телефон" required>
-                <button type="submit">Зарегистрироваться</button>
+                <button type="submit" class="submit-btn">Зарегистрироваться</button>
             </form>
         </div>
-    </div>
 
-    <div class="fixed" id="header">
-        <h2>Чужие маски - Семинар</h2>
     </div>
 
     <script>
-        // Появление элементов при прокрутке
-        const containers = document.querySelectorAll('.container');
-        const header = document.getElementById('header');
-
-        function onScroll() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-            // Проход по всем блокам
-            containers.forEach((container, index) => {
-                const rect = container.getBoundingClientRect();
-                if (rect.top < window.innerHeight * 0.8) {
-                    container.classList.add('visible');
-                }
-
-                // Фиксированный хедер появляется после первого блока
-                if (scrollTop > containers[0].offsetTop) {
-                    header.classList.add('visible');
-                } else {
-                    header.classList.remove('visible');
-                }
-            });
+        function showMore(sectionId) {
+            document.getElementById(sectionId).classList.add('visible');
         }
-
-        window.addEventListener('scroll', onScroll);
-        onScroll(); // для загрузки страницы
     </script>
 
 </body>
