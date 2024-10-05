@@ -1,0 +1,1 @@
+# whaitlist-osu
