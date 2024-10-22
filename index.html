@@ -64,8 +64,12 @@
       font-size: 18px;
       color: #a9a9b2;
     }
-    form {
+    .form-section {
       margin-top: 30px;
+      text-align: center;
+    }
+    form {
+      margin-top: 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -120,8 +124,7 @@
 
   <div class="description">
     <h2>Решение — Telegram Бот для Ментального Порядка</h2>
-    <p>Наш бот помогает упорядочить мысли и снизить уровень стресса. Забудьте про хаос в голове — теперь у вас есть личный помощник, 
-    который быстро записывает идеи, распределяет их по категориям и напоминает о важных делах.</p>
+    <p>Наш бот поможет упорядочить мысли, сократить стресс и вернуть контроль над задачами. Запишите свои мысли, а бот быстро их разложит по полочкам и напомнит о важных делах.</p>
     <ul class="features-list">
       <li>✨ Быстрое добавление мыслей в любой момент.</li>
       <li>📂 Автоматическая сортировка задач и идей.</li>
@@ -130,13 +133,17 @@
     </ul>
   </div>
 
-  <form action="https://formspree.io/f/xkgnwgbn" method="POST">
-    <input type="email" name="email" placeholder="Введите ваш email или телефон" required>
-    <button type="submit">Присоединиться к Waitlist</button>
-  </form>
+  <div class="form-section">
+    <h2>Присоединяйтесь к Waitlist</h2>
+    <p>Введите ваш email или номер телефона, чтобы первыми получить доступ к нашему Telegram боту.</p>
+    <form action="https://formspree.io/f/xkgnwgbn" method="POST">
+      <input type="email" name="email" placeholder="Введите ваш email или телефон" required>
+      <button type="submit">Присоединиться</button>
+    </form>
 
-  <div class="plugin-link">
-    <p><a href="https://chatgpt.com/g/g-ijke0WajQ-pomoshchnik-dlia-mentalnogo-poriadka" target="_blank">Explore on ChatGPT Plugin →</a></p>
+    <div class="plugin-link">
+      <p>Или <a href="https://chatgpt.com/g/g-ijke0WajQ-pomoshchnik-dlia-mentalnogo-poriadka" target="_blank">исследуйте возможности через ChatGPT Plugin →</a></p>
+    </div>
   </div>
 </div>
 
